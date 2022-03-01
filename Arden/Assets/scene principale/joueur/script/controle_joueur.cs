@@ -7,7 +7,8 @@ public class controle_joueur : MonoBehaviour
    private float vitesse = 5f;
 
     [SerializeField]
-    private float sencibilite = 3f;
+    private float sencibiliteX = 3f;
+    private float sencibiliteY = 3f;
 
     private deplacement_joueur deplacement;
     private void Start()
@@ -30,13 +31,13 @@ public class controle_joueur : MonoBehaviour
 
         // calcule de la rotation du joueur
         float yRot = Input.GetAxisRaw("Mouse X");
-        Vector3 rotation = new Vector3(0, yRot, 0) * sencibilite;
+        Vector3 rotation = new Vector3(0, yRot, 0) * sencibiliteX;
 
         deplacement.Rotation(rotation);
 
         // calcule de la rotation de la camera
         float xRot = Input.GetAxisRaw("Mouse Y");
-        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sencibilite;
+        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sencibiliteY;
 
         deplacement.CameraRotation(cameraRotation);
     }
