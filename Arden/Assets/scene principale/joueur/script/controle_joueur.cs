@@ -3,8 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(deplacement_joueur))]
 public class controle_joueur : MonoBehaviour
 {
-   [SerializeField] 
-   private float vitesse = 5f;
+    [SerializeField] 
+    private float vitesse = 5f;
+    private float hauteurSaut = 5f;
 
     [SerializeField]
     private float sencibiliteX = 3f;
@@ -28,6 +29,12 @@ public class controle_joueur : MonoBehaviour
         Vector3 velocity = (moveHorizontal + moveVertival).normalized * vitesse;
 
         deplacement.Move(velocity);
+
+        //ajouter de la force au saut
+        float forceSaut = Input.GetAxisRaw("Jump");
+        Vector3 jump = (transform.up * forceSaut) * hauteurSaut;
+        deplacement.Sauter(jump);
+
 
         // calcule de la rotation du joueur
         float yRot = Input.GetAxisRaw("Mouse X");
